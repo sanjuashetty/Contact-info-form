@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+<style>
+  .custom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/Users/sanju.a/Downloads/photo-1625225233840-695456021cde.jpeg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+ 
+  }
+   input[type="text"], input[type="email"], input[type="tel"] {
+    width: 300px; 
+    padding: 10px;
+    border: 0.5px solid black; 
+    Font-size: 16px;
+}
+textarea {
+    width: 300px; 
+    height: 150px; 
+    padding: 10px;
+    font-size: 16px;
+  }
+input[type="submit"] {
+    width: 319px; 
+    height: 50px; 
+    font-size: 18px; 
+    background-color: white; 
+    color: black; 
+    border:  0.5px solid black; 
+    border-radius: 5px; 
+    cursor: pointer; 
+
+  }
+
+    form {
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+.custom-input-container {
+    position: relative;
+  }
+
+  .custom-input-container input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid gray;
+  }
+
+  .message-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(174, 214, 241, 0.5);
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;/Volumes/XAMPP/xampp-osx-8.2.4-0-installer.app
+    text-align: center;
+    pointer-events: none; 
+  }
+
+  .custom-input-container:hover .message-overlay {
+    display: flex;
+  }
+</style>
+<script>
+function showMessageOverlay(inputId, message) {
+  const inputContainer = document.getElementById(inputId);
+  const messageOverlay = inputContainer.querySelector('.message-overlay');
+  messageOverlay.textContent = message;
+  messageOverlay.style.display = 'flex';
+}
+
+function hideMessageOverlay(inputId) {
+  const inputContainer = document.getElementById(inputId);
+  const messageOverlay = inputContainer.querySelector('.message-overlay');
+  messageOverlay.style.display = 'none';
+}
+
+
+</script>
+
+
+</head>
+<body>
+
+
+
+<div class="custom-container">
+
+<form action="submit.php" method="post"  onsubmit="return showConfirmation()">
+
+<!-- Your form elements go here -->
+<h2>Contact Information</h2>
+    <label for="name">Name:</label>
+    <div class="custom-input-container" id="nameContainer">
+    <input type="text" id="name" name="name"
+     onfocus="showMessageOverlay('nameContainer', 'Enter your name');" 
+     onblur="hideMessageOverlay('nameContainer');">
+      <div class="message-overlay"></div>
+    </div>
+    
+    <label for="phone">Phone Number:</label>
+    <div class="custom-input-container" id="phoneContainer">
+    <input type="tel" id="phone" name="phone"
+     onfocus="showMessageOverlay('phoneContainer', 'Enter your phone number');" 
+     onblur="hideMessageOverlay('phoneContainer');">
+      <div class="message-overlay"></div>
+    </div>
+    
+    <label for="email">Email ID:</label>
+    <div class="custom-input-container" id="emailContainer">
+    <input type="email" id="email" name="email"
+     onfocus="showMessageOverlay('emailContainer', 'Enter your email address');" 
+     onblur="hideMessageOverlay('emailContainer');">
+      <div class="message-overlay"></div>
+    </div>
+    
+    <label for="address">Address:</label><br>
+    <div class="custom-input-container" id="messageContainer">
+    <textarea id="address" name="address" rows="4"                                       
+onfocus="showMessageOverlay('messageContainer', 'Enter your address');" 
+onblur="hideMessageOverlay('messageContainer');"></textarea>
+<div class="message-overlay"></div>
+    </div>
+    <br>
+    <input type="submit" value="Submit" >
+
+<script>
+  function showConfirmation() {
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var email = document.getElementById("email").value;
+    var address = document.getElementById("address").value;
+
+    if (name === "") {
+      alert("Please fill out name fields.");
+      return false;
+    }
+
+if (phone === "") {
+      alert("Please fill out phone fields.");
+      return false;
+    }
+
+if (email === "" ) {
+      alert("Please fill out email fields.");
+      return false;
+    }
+
+if (address === "") {
+      alert("Please fill out address fields.");
+      return false;
+    }
+
+
+ else {
+      var confirmationMessage = "Thank you, " + name + "! Your form has been submitted successfully.";
+      alert(confirmationMessage);
+      return true;
+    }
+  }
+</script>
+
+
+
+</form>
+
+</div>
+
+</body>
+</html>
+
